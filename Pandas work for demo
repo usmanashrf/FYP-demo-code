@@ -1,0 +1,1325 @@
+#import data set in data frame
+import pandas as pd
+import os 
+#df = pd.read_excel('Mustakbil & Rozee Jobs.xlsx', encoding='ISO-8859-1')
+data = pd.read_excel("DATASET.xlsx",encoding='ISO-8859-1' )
+df=data.copy()
+df
+
+#===================================================================================================================================
+#====================================================================================================================================
+# merge Locations
+
+
+df['Location'].replace([" Lahore"," lahore","lahore",'Lahore -','Lahore Abid Market','Lahore Cantt','Kot Lakhpat',' Raiwind',' Manga Mandi','Main Boulevard Gulberg',' raiwind',' Johar Town',' Raiwand','DHA Lahore','Lahroe','Gulberg II','Fortress Stadium','Lahore ','Daroghawala','Lahoew','manga',' Lahore        ','lahore pakistan','Any - Lahore','Lahoree','different places in lahore','Faisal Town',' manga mandi','Mugualpura'," lahore ",'Mall of Lahore','Lahore Division','Ferozepur Road','Manga Raiwind',' Cantt',' Lahore        ','Lahore and any other','Lahore;','Manga Mandi','Sheikhupura road',' Lahore                     ','Model Town Extension Lahore',"Raiwaind",'14 C 1 Civic Centre','Siddiq Center'," GT Road",'Lahoere','Iqbal Town','Samnabad Lahore',"Lahore Barkat Market",'14 C 1 Civic Centre ',"Laore",'New Anarkali'," lahor","Raiwind Near Lahore","Raiwind",'Cavalary ground','lahore only','lahoer','Hussain Chowk','Barkat Market Lahore','Wahdat Road','Lahore; Any location','Gulburg','Gulberg III','lahore                                                                                                                                                                                               Lahore','  lahore        ','Lahore                                                                                                                                                                                                    Lah','Lahore; Any location ','  lahore','Mall Road','Lahore Canntt',' Lahore ',' Lahore      ',' Shalimar Link Roar', 'Lahire','Barkat Market',' Hala','Model Town','Lahore Gulberg II',' Mughalpura','Allam IQbal Town','Gulberg','Multan Road','M M Alam Road','Lahore.','  lahore ','LAhore','Lahore Only','  lahore','Ichra',' Gulberg III','Sunder Industrial State','New Garden Town','from Lahore','Lahorte','  lahore','Gulberg Lahore','Main Boulevard','Raiwind Road',' Lahore.',' Gulberg',' Lahore  ',' Abid Market','Baghbanpura Lahore','Defence',' Lahore     ','Ichra Ferozpur Road','Main Bouleward Gulberg','Kalma Chowk',' Lhr','Shahdara','Lahoure','Lahore cantt','Lahore cantt.','  Lahore',' Prefferably Lahore','Raiwand',' Walton Road','defence lahore','Firdous Market','Joher Town','Liberty Roundabout','Lahote','Manga Mandi Unit','All Lahore',' Lohore','shimla Hill Lahore'],["Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore","Lahore"],inplace=True)
+df['Location'].replace([' Islamabad','islamabad','ISlamabd','DHA - Islamabad','Isb','Islamabad ','Bhara Kahu ','Bara Kahu','ISlamabad','Ialamabad','Islambad','Isalamabad',' Humak Town','Ismalabad',' Islanabad','Islamabd','Islmabad',' Islamababad','Islamabad.',' isalamabad','Islamabad DHA','Kahuta Road','Isklamabad','Bharakahu',' Islambad','islamaabd','Isamabad',' islamabad ',' Islamabad ',' DHA phase 1',' phase 1','Burma Town','Beverly Center','Margalla Town','Isalambad','Bhara Kahu',' DHA islamabad',' Rawalpindi Islamabad ','Media Town',' Islamabad.','Dha','Islamabad`',' Islmabad','Islamabadd','Islamabade','Stock Exchange','G-11 Markaz','Islamaabd','Islamababd.',' islamabad','Blue Area','Islamanad','Islamababd','Islamababd.',' Islamabad and other cities','islamabbad','Near Islamabad','phase 1','phase 1','DHA phase 1','DHA islamabad','DHA',' islambad',' ISB',' G one Johar Town',' Humak Isb','Chata Bakhtawar',' Islam Abad','STP2',' Islamabad others','PWD Housing Society','PWD',' isalamabad'],['Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad',' Islamabad ','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad','Islamabad'],inplace=True)
+df['Location'].replace([' Rawalpindi',' RWP','Rawalpindi Project','Rawalpindi.','Saddar','Saddar',' Rawalpinidi','Rawalpind','Rawalipndi','Rawalpinidi','rawalindi',' Rawalpindi ','Rawalpinds','Rawalpindi ','Bahria Town',' pindi','Bahira Town','Rawalpinid','Banni Chowk','Rawapindi','Chandni Chowk',' ralwalpindi etc..',' Rwp',' Rawapindi','Rawlpindi',' rawalpindi',' Rawalpinid','rawalpindi','Adyala Road','Scheme Three',' Rawaplindi','Rwapentee','Behria Town','Rawalpnidi','Rawaplindi','Lalazar','Gulrez Rwp','Rawlpinidi',' Pindi','Bharia Town','Rwp','Rawal Pindi',' Rawal Pendi',' Rawalipindi','Rawalpindi or nearby','Rawalindi',' Bahria Town','Sujawal - Karachi','RawalPindi',' Rawalpind','Riwalpindi','Rawalpndi','Morgah',' Rawalpindii','rewalpindi','rawalpimdi',' Near Kashmir Road',' rawalpinid.',' Rawal Pindi','Rawalpindi Cantt','Chaklal Scheam III','Airport Housing Society','Muree road','Rawawlpindi','Jamia Masjid Road','AECHS',' Chaklala','Harley Street',' Saddar','Cantt','Satellite Town','Scheme III'],['Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi','Rawalpindi'],inplace=True)
+df['Location'].replace([' Multan','Mulatn','Sikandrabad','MUltan',' MUltan','multan',' multan',' MULTAN'],['Multan','Multan','Multan','Multan','Multan','Multan','Multan','Multan'],inplace=True)
+df['Location'].replace(['karachi','Shahrae Faisal',' Karachi','perfer in Karachi','Clifton',' karachi','Krachi',' Ali bandar','Gadap Town',' Kachi','Krachi'' Ali bandar','karachi   ','KIA','Karachi ','North Nazimabad','Korangi Crossing',' Korangi','Nursery','karachi   ','Karachi.','Gulshan e iqbal','DHA Phase V Ext','Zamzama',' Hameedabad','karachi   ','Karachi and all cities of Sindh','Karachi only','karaachi','Landhi','Kaarchi','Mehmoodabad','Gulshan e Iqbal','Malir Cantt','Gulshan Iqbal Karachi','Kaachi','Karacho','DUHS','FB Area',' University Road','PECHS',' PECHS','GulshaneIqbal','Karachin','Kkarachi','NORTH Karachi','karachi      ',' Ojha Campus',' Karach',' Gulshan','Gulshan E Maymar','Model Colony Malir Karachi','West Wharf','Burnse Road','Kaarachi','Karacih ',' Karachi','ShahraeFaisal',' Gulsitan e Johar','DHA Phase II Extension','Katachi','Karachi','karachi  ','kaarchi','Any - Karachi',' Gulshan e Iqbal',' Gulsitan e Johar','Gulshan Karachi','Shahra e Faisal Karachi',' Karachi etc',' superhighway','K','Karacih','Karachi  ','Nazimabad','Karacki','Jinnah Road','Gulshan','Karachi','Ashanabad',' Sharae faisal','FB AREA','F.B Area',' Nazimabad','GulshaneIqbal','karachi  ','MA jinnah Road','Shadab Textile Mills Limited','Landhi industrial Area Karachi','Gulshan Iqbal karachi','Karahci','north nazimabad','Karachi Only','for Karachi','karachi   ','Super Highway','Garden','Cliftion','Malir','Lalani and Associates Karachi','Fedral B Area','Convex Interactive','SITE Karachi','Defence Housing Authority','Karachi SITE','Korangi Indutrial Area','KKarachi','Chundrigar Road',' PECHS','Landhi Industrial Area','Karchi','FB Area ','Cantt Station','Karachi',' Karachi ','Awami Markaz Karachi','EPZA',' North Karachi','Federal B Area','Korangi','Karachi   ','Gulshan Iqbal','Alamgir Road','Soldier Bazar','Numaish','Korangi Industrial Area','Karach','Sharah e Faisal', 'KArachi','Tariq Road',' Defence','kARACHI','F.B. Area Karachi',' Khi','Landhi industrial Area Karachi',' Industrial Area','Karachi   ','Khi','Karahi','karachi '],['Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi','Karachi'],inplace=True)
+df['Location'].replace([' Peshawar',' Pheshawar','Peshawar ',' Peshwer','Peshawer','Peshawar','Peshwawar',' PESHAWAR','peshawar',' peeshawar',' peshavar',' Pehsawar','Pesahwar',' FR Peshawar ',' FR Peshawar','Peshawar','peshwar',' Peshwar',' peshawar',' Peshawer',' Adezai','FR Peshawar'],['Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar','Peshawar'],inplace=True)
+df['Location'].replace([' Faisalabad','Fasialabad',' faisalable','Faislaabad',' Faislabad',' Fasilabad','Faislalabad','Fasisalabad', ' faisalabad','faisalabad','Sammundri Road',' Fasilabad',' FBD','Faisalanad','Faisalabd',' faisal abad','New Civil Lines',' Faisalabed',' FAISALABAD',' FaisalAbad','Fasalabad','Faisaslabad',' Fasialabad','Fiasalabad',' Fasilabad',' Fasilabad',' Fasilabad ',' Faislabad','Sheikhupura Road','Faisalabad.','FAisalabad','Faislabad','Faisalaad',' FSD',' faislabad',],['Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad','Faisalabad'],inplace=True)
+df['Location'].replace([' Gujranwala',' Gujeranwala',' GUJRANWALA',' Gujranawala',' gujranawala',' Ghakhar mandi',' Gujrawala','gujranwala',' gujranwala',' Kamoke',' Ahmed nager chatha',],['Gujranwala','Gujranwala','Gujranwala','Gujranwala','Gujranwala','Gujranwala','Gujranwala','Gujranwala','Gujranwala','Gujranwala','Gujranwala'],inplace=True)
+df['Location'].replace([' Hyderabad',' Hyderabad ','hyderabad',' Tando jam',' Haidarabad',' Hydra Abad','Hyserabad',' Hydrabad',' hyderabad'],['Hyderabad','Hyderabad','Hyderabad','Hyderabad','Hyderabad','Hyderabad','Hyderabad','Hyderabad','Hyderabad'],inplace=True)
+df['Location'].replace([' Sialkot',' sailkot',' SIALKOT',' Siranwali',' sialkot',' Pasrur',' Sambrial',' SIalkot',' Sailkot','Sialkot ','Silakot','sialkot'],['Sialkot','Sialkot','Sialkot','Sialkot','Sialkot','Sialkot','Sialkot','Sialkot','Sialkot','Sialkot','Sialkot','Sialkot'],inplace=True)
+df['Location'].replace([' Quetta','quetta ','quetta',' Queeta',' queta',' Quetta',' Quetta ',' quetta'],['Quetta','Quetta','Quetta','Quetta','Quetta','Quetta','Quetta','Quetta'],inplace=True)
+df['Location'].replace([' Bahawalpur',' Bhawalpur',' Bahawlpur',' Bahawal pur',' Bahawalpure',' bhawalpur','Near Welcome Chok'],['Bahawalpur','Bahawalpur','Bahawalpur','Bahawalpur','Bahawalpur','Bahawalpur','Bahawalpur'],inplace=True)
+df['Location'].replace([' Gujrat',' GUJRAT','Gurat','Gujrat and surroundings','gujrat',' Gujarat',' Jalalpur Jattan',' Dinga'],['Gujrat','Gujrat','Gujrat','Gujrat','Gujrat','Gujrat','Gujrat','Gujrat'],inplace=True)
+df['Location'].replace([' Sukkur',' Sukkhar',' Sukkur',' Sukkur',' sukker',' Sukkur','Sukker','Sukkur surrounding',' Sukkur                ',' Sakhar','Rohri Bypass','      Sukkur                                                                                                                                                                                              ',' Sukkur',' Qadirpur Sukkur','Sukhur',' Sukkar',' Sukkhur',' Sukkur '],['Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur','Sukkur'],inplace=True)
+df['Location'].replace([' Sargodha',' Bhalwal',' Sarghoda'],['Sargodha','Sargodha','Sargodha'],inplace=True)
+df['Location'].replace([' wah cantt',' WAHCANTT',' Wah',' Wahcantt.',' wah',' wah cant','Wah',' Wah cantt','WahCantt', 'WahCantt',' Near Wah Cantt',' WAH',' Wah Cantt','Wah cantt',' Wahcantt',' Wah Cantt.'],['Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt','Wah cantt'],inplace=True)
+df['Location'].replace([' Sahiwal'],['Sahiwal'],inplace=True)
+df['Location'].replace([' Jhelum',' Jehlam','Sohawa District Jelum',' Sohawa',' JHELUM',' Jehlum',' jehlum',' Pind Dadan Khan','Jehlum'],['Jhelum','Jhelum','Jhelum','Jhelum','Jhelum','Jhelum','Jhelum','Jhelum','Jhelum'],inplace=True)
+df['Location'].replace([' Taxila',' TAXILA',' Taxila.',' Texla',' taxla',' Taxilla',' texila'],['Taxila','Taxila','Taxila','Taxila','Taxila','Taxila','Taxila'],inplace=True)
+df['Location'].replace([' Mardan',' mardan'],['Mardan','Mardan'],inplace=True)
+df['Location'].replace([' Sheikhupura','Shaikhupra','Machike','Shaikhupura','Sheikhupura',' shekhupura','Sheikhupura','Sheikhupura                                                                                                                                                                                           ','Sheikhupura                                                                                                                                                                   ','Sheikhupura','Sheikhupura                                                                                                                   ','Sheihkupura','Shaikhupra','Sheikhupura',' Shiekhupura','Baigpur Distt Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Baigpur Distt Shikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikupura','Sheikhupura','Sheikhupura',' sheikhupora','Shikarpur','Shiekhupura Road',' Shaikhupur',' Shaikhupura','Shaikhupra'],['Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura','Sheikhupura'],inplace=True)
+df['Location'].replace(['Any','any','Any Where in','North Region','Any Location','Anywhere','All Major Cities', ' ect','Central region','All over','Multiple',' etc','Site Area','Pakistan',' Pakistan','anywhere  ',' Any City','All Major Cities','Home Based All cities','all Pakistan','anywhere','Major cities','south and central punjab','Placement in Metro CIties','Telecommute','Home Office','Remote Work',' Surroundings',' any','Home Based All cities','Anywhere in the country',' pakistan','Home Based All cities','anywhere in','multiple cities','Site','multiple cities','Centreal region','Project Sites','Home Based All cities','Any City of','Any city with in','Virtual Office','any city in','All Over','multiple cities','Any city','Online','Home Based All cities','open','Home','Anywhere in the world','Your Home Office','Any - Across world','All cities',' all cities','Anywhere in Pakistan','Any Where in','anywhere in with high speed internet','Paksiatn','Anywhere.','Multiple cities                                                                                                                                                                                                 Mul','Multiple cities',' ','Require Traveling','Home Base - freelancer','anywhere','Any location applicable',' South Regions','Central Region',' Central','Any where','Any Where in','SITE','Any Where in','Anywhere in',' with Internet','multiple cities','Remote',' all cities','Any Where in ','all pakistan','All',' Mobile access','Accorss','anywhere ',' anywhere in pakistan','From All cities of','any where from','Namirah',' All','Multiple Locations','multiple cities','From All Over','Work From Home','Home Based','Any Where in ',' Any','all','multiple cities','Mltiple Cities','All Pakistan Major Cities','Home Based All cities','SITE Area','Anywhere in .','any where in Pak','Out Side the','Home Based All cities','All Over Pakistan','Qazi Ahmed','As the project requires','South Region',' OR ANY CITY',' Other',' All other locations as online official','Home Based All cities ','All Pakistan','all pakistan','any where in Pak','any where in','nan','North','Any city in','All Cities','multiple cities    ','Diriyah'],['Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities','Multiple Cities'],inplace=True)
+df['Location'].replace([' Abbottabad',' abbotabad','Abbotabad',' Abbotabad',' Abotabad','Abottabbad'],['Abbottabad','Abbottabad','Abbottabad','Abbottabad','Abbottabad','Abbottabad'],inplace=True)
+df['Location'].replace(['Hub','hub','hub industrial area ',' hub industrial area','hub industrial area','Hub Industrial Estate',' Hub','Hub Inds Estate','Hub City','Hub . Baluchistan','Hub chowki','Hub Chowki','Hub ','Hub Baluchistan'],['Hub Balochistan','Hub Balochistan','Hub Balochistan','Hub Balochistan','Hub Balochistan','Hub Balochistan','Hub Balochistan','Hub Balochistan','Hub Balochistan','Hub Balochistan','Hub Balochistan','Hub Balochistan','Hub Balochistan','Hub Balochistan'],inplace=True)
+df['Location'].replace([' Sindh','Multiple Remote Locations in Sindh',' Sind',' sindh'],['Sindh','Sindh','Sindh','Sindh'],inplace=True)
+df['Location'].replace([' Punjab','All Punhab',' punjab','punjab',' Punjab ',' Punjab',' Punjab',' Punjab  ',' Punjab','Punjab Province','Cities of Punjab',' Central Punjab'],['Punjab','Punjab','Punjab','Punjab','Punjab','Punjab','Punjab','Punjab','Punjab','Punjab','Punjab','Punjab'],inplace=True)
+df['Location'].replace([' Vehari'],['Vehari'],inplace=True)
+df['Location'].replace([' Okara','Depal Pur',' Haveli lakha',' Depal Pur',' Haveli Lakha',' okara',],['Okara','Okara','Okara','Okara','Okara','Okara'],inplace=True)
+df['Location'].replace([' Jhang',' jhang'],['Jhang','Jhang'],inplace=True)
+df['Location'].replace([' Nasirabad'],['Nasirabad'],inplace=True)
+df['Location'].replace([' Bazdar'],['Buzdar'],inplace=True)
+df['Location'].replace([' Nationwide','National','Na','NationWide','Nation Wide'],['Nationwide','Nationwide','Nationwide','Nationwide','Nationwide'],inplace=True)
+df['Location'].replace([' Pir mahal'],['Pir Mahal'],inplace=True)
+df['Location'].replace([' gujarkhan',' Gujar Khan'],['Gujarkhan','Gujarkhan'],inplace=True)
+df['Location'].replace([' Rahimy Yar Khan',' Rahimyar khan','Rahim yar Khan'],['Rahim Yar Khan','Rahim Yar Khan','Rahim Yar Khan'],inplace=True)
+df['Location'].replace([' Turbat'],['Turbat'],inplace=True)
+df['Location'].replace([' Mandi Bahaudin',' Mandi Bahauddin','Mandi Bahauddin'],['Mandi Bahaudin','Mandi Bahaudin','Mandi Bahaudin'],inplace=True)
+df['Location'].replace(['District Badin'],['Badin'],inplace=True)
+df['Location'].replace([' Reset of Sindh',' sind'],['Sindh','Sindh'],inplace=True)
+df['Location'].replace([' Tando muhammad khan',' Tando Mohammad Khan',' Tando jan muhammad'],['Tando muhammad khan','Tando muhammad khan','Tando muhammad khan'],inplace=True)
+df['Location'].replace([' D.G.Khan',' D G khan',' D.G Khan',' Dera Ghazi Khan',' DG Khan',' Dera ghazi khan','Dera Ghazi Khan'],['D.G.Khan','D.G.Khan','D.G.Khan','D.G.Khan','D.G.Khan','D.G.Khan','D.G.Khan'],inplace=True)
+df['Location'].replace([' Kohan'],['Kohan'],inplace=True)
+df['Location'].replace([' Dera Bugti','Dera Bugti','Dera Bugti ','Dera Bugti'],['Dera Bugti','Dera Bugti','Dera Bugti','Dera Bugti'],inplace=True)
+df['Location'].replace([' Jaglot'],['Jaglot'],inplace=True)
+df['Location'].replace([' Shahpur'],['Shahpur'],inplace=True)
+df['Location'].replace([' Mutyari Sangher Districts.',' Sanghar'],['Sanghar','Sanghar'],inplace=True)
+df['Location'].replace([' Malakand'],['Malakand'],inplace=True)
+df['Location'].replace([' Banu',' Bannu'],['Banu','Banu'],inplace=True)
+df['Location'].replace([' Ranipur'],['Ranipur'],inplace=True)
+df['Location'].replace(['di chishtian'],['Bahawalnagar'],inplace=True)
+df['Location'].replace([' Juharabad'],['Juharabad'],inplace=True)
+df['Location'].replace([' Lund'],['Lund'],inplace=True)
+df['Location'].replace([' Lala Musa',' Lalamusa','Lalamusa'],['Lala Musa','Lala Musa','Lala Musa'],inplace=True)  
+df['Location'].replace([' Attak',' Attock etc',' Attock',' Attok',' Kamra'],['Attock','Attock','Attock','Attock','Attock'],inplace=True)
+df['Location'].replace(['Dhabeji Thatta','Thata'],['Thatta','Thatta'],inplace=True)                                  
+df['Location'].replace(['Kohat Hangu'],['Kohat'],inplace=True)
+df['Location'].replace([' Naushahro Feroze'],['Naushahro Feroze'],inplace=True)
+df['Location'].replace([' Hassan Abdal',' hassan Abdal',' hassan abdal',' HASSANABDAL',' Hassanabdal',' Hasan Abdal',' Hasan abdal','Hassanabdal','Hasan Abdal'],['Hassan Abdal','Hassan Abdal','Hassan Abdal','Hassan Abdal','Hassan Abdal','Hassan Abdal','Hassan Abdal','Hassan Abdal','Hassan Abdal'],inplace=True)
+df['Location'].replace(['Kazi Ahmed'],['Qazi Ahmed'],inplace=True)
+df['Location'].replace([' Jaffarabad'],['Jaffarabad'],inplace=True)
+df['Location'].replace([' Chaman'],['Chaman'],inplace=True)
+df['Location'].replace([' Tarru Jabba',' Noshera'],['Nowshera','Nowshera'],inplace=True)
+df['Location'].replace([' Rawat'],['Rawat'],inplace=True)
+df['Location'].replace([' Qila Abdullah',' Qila abdullah'],['Qila Abdullah','Qila Abdullah'],inplace=True)
+df['Location'].replace([' Mansera',' Mansehra','Balakot','Mansera'],['Mansehra','Mansehra','Mansehra','Mansehra'],inplace=True)
+df['Location'].replace([' Shangla'],['Shangla'],inplace=True)
+df['Location'].replace([' Hyderababd',' HYDERABAD',' Multan Hyderabad','Hyderababd'],['Hyderabad','Hyderabad','Hyderabad','Hyderabad'],inplace=True)
+df['Location'].replace([' Kalat'],['Kalat'],inplace=True)
+df['Location'].replace([' Muzaffergarh','Muzafar Garh site',' Muzaffar Garh',' Muzaffargarh',' Muzzaffargarh','Muzaffar Garh',' Kot Addu'],['Muzaffargarh','Muzaffargarh','Muzaffargarh','Muzaffargarh','Muzaffargarh','Muzaffargarh','Muzaffargarh'],inplace=True)
+df['Location'].replace(['Gadoom Amazai',' Gadoon',' Sawabi',' Swabi'],['Swabi','Swabi','Swabi','Swabi'],inplace=True)
+df['Location'].replace([' Chunian','Chunian'],['Chunian','Chunian'],inplace=True)
+df['Location'].replace(['Distt Chiniot','Chiniot Must relocate',' Chiniot'],['Chiniot','Chiniot','Chiniot'],inplace=True)
+df['Location'].replace([' Talagang'],['Talagang'],inplace=True)
+df['Location'].replace([' Qila safed'],['Qila safed'],inplace=True)
+df['Location'].replace([' Dhabeji'],['Dhabeji'],inplace=True)
+df['Location'].replace([' Taftan'],['Taftan'],inplace=True)
+df['Location'].replace([' Arif wala','Arifwala',],['Arif wala','Arif wala'],inplace=True)
+df['Location'].replace([' Meerpur','Mir Pur',' Mirpur','Mirpur  (AJK)'],['Mirpur','Mirpur','Mirpur','Mirpur'],inplace=True)
+df['Location'].replace([' Panu Akhil','Pannu aqil'],['Panu Akhil','Panu Akhil'],inplace=True)
+df['Location'].replace([' Muree etc','Murree Hills',' Murree'],['Murree','Murree','Murree'],inplace=True)
+df['Location'].replace([' Karor Lal Esan'],['Karor Lal Esan'],inplace=True)
+df['Location'].replace([' Thall'],['Thall'],inplace=True)
+df['Location'].replace([' Charsada',' Charsadda','Charsada'],['Charsadda','Charsadda','Charsadda'],inplace=True)
+df['Location'].replace([' bagh',' Bagh'],['Bagh','Bagh'],inplace=True)
+df['Location'].replace([' Garhi Khairo'],['Garhi Khairo'],inplace=True)
+df['Location'].replace([' Larkana',' Larkana',' Larkana',' Larkana',' Larkana',' Larkana  ',' Larkana '],['Larkana','Larkana','Larkana','Larkana','Larkana','Larkana','Larkana'],inplace=True)
+df['Location'].replace([' Plant Muridke'],['Muridke'],inplace=True)
+df['Location'].replace([' kashmir','Kashmir',' Azad Kashmir',' Kashmir',' AJK',' Kotli'],['Kashmire','Kashmire','Kashmire','Kashmire','Kashmire','Kashmire'],inplace=True)
+df['Location'].replace([' rawat'],['Rawat'],inplace=True)
+df['Location'].replace([' Qila saifullah'],['Qila saifullah'],inplace=True)
+df['Location'].replace([' Jalalpur bhattian'],['Jalalpur bhattian'],inplace=True)
+df['Location'].replace([' Jalalabad'],['Jalalabad'],inplace=True)
+df['Location'].replace([' Tharparkar',' Mithi'],['Tharparkar','Tharparkar'],inplace=True)
+df['Location'].replace([' Takht-a-Bhai'],['Takht-a-Bhai'],inplace=True)
+df['Location'].replace([' TandoAllahyar'],['TandoAllahyar'],inplace=True)
+df['Location'].replace([' shaikhupra'],['Shaikhupra'],inplace=True)
+df['Location'].replace([' Mianwali bangla',' Mianwali'],['Mianwali','Mianwali'],inplace=True)
+df['Location'].replace([' Daharki'],['Daharki'],inplace=True)
+df['Location'].replace([' Kotri'],['Kotri'],inplace=True)
+df['Location'].replace([' Jacobabad'],['Jacobabad'],inplace=True)
+df['Location'].replace([' Khairpur'],['Khairpur'],inplace=True)
+df['Location'].replace([' Mehrabpur'],['Mehrabpur'],inplace=True)
+df['Location'].replace([' Karak'],['Karak'],inplace=True)
+df['Location'].replace([' Sehwan Sharif'],['Sehwan Sharif'],inplace=True)
+df['Location'].replace([' Risalpur'],['Risalpur'],inplace=True)
+df['Location'].replace([' Barkhan'],['Barkhan'],inplace=True)
+df['Location'].replace([' Hangu'],['Hangu'],inplace=True)
+df['Location'].replace([' Mastung'],['Mastung'],inplace=True)
+df['Location'].replace([' Liaquat Pur'],['Liaquat Pur'],inplace=True)
+df['Location'].replace([' Phool Nagar'],['Phool Nagar'],inplace=True)
+df['Location'].replace([' Jalalpur jattan'],['Jalalpur Jattan'],inplace=True)
+df['Location'].replace([' Baltistan'],['Baltistan'],inplace=True)
+df['Location'].replace([' Muzzafar Abad',' Muzaffarabad'],['Muzaffarabad','Muzaffarabad'],inplace=True)
+df['Location'].replace([' Lakki marwat','Lakki marwat'],['Lakki Marwat','Lakki Marwat'],inplace=True)
+df['Location'].replace([' Islamkot'],['Islamkot'],inplace=True)
+df['Location'].replace([' muridke','MUridke',' Muridke'],['Muridke','Muridke','Muridke'],inplace=True)
+df['Location'].replace(['mian Channu',' Mian channu',' Mian Channu'],['Mian Channu','Mian Channu','Mian Channu'],inplace=True)
+df['Location'].replace([' pakttoki',' Patoki',' Pattoki'],['Pattoki','Pattoki','Pattoki'],inplace=True)
+df['Location'].replace([' Kohistan'],['Kohistan'],inplace=True)
+df['Location'].replace([' Shershah'],['Shershah'],inplace=True)
+df['Location'].replace([' Khaipur'],['Khaipur'],inplace=True)
+df['Location'].replace([' Hoshab'],['Hoshab'],inplace=True)
+df['Location'].replace([' Wazir Abad',' Wazirabad'],['Wazirabad','Wazirabad'],inplace=True)
+df['Location'].replace(['  Rahim yar Khan',' Rahimyar Khan',' rahim yar Khan','Rahim Yar Khan','Liaquat Pur'],['Rahim Yar Khan','Rahim Yar Khan','Rahim Yar Khan','Rahim Yar Khan','Rahim Yar Khan'],inplace=True)
+df['Location'].replace([' Shiwal',' sahiwal'],['Sahiwal','Sahiwal'],inplace=True)
+df['Location'].replace([' Gujjar Khan',' Gujar khan','Gujarkhan'],['Gujar Khan','Gujar Khan','Gujar Khan'],inplace=True)
+df['Location'].replace([' Thata','District Thatta',' Thatta'],['Thatta','Thatta','Thatta'],inplace=True) 
+df['Location'].replace([' Qazi Ahmad'],['Sindh'],inplace=True)    
+df['Location'].replace([' Surab'],['Surab'],inplace=True)
+df['Location'].replace([' Nawab Shah','Nawab Shah'],['Nawabshah','Nawabshah'],inplace=True)
+df['Location'].replace(['Kpk',' KPK','Nwfp',' NWFP'],['KPK','KPK','KPK','KPK'],inplace=True)
+df['Location'].replace([' noshehra','Jehangira',' Nowshera',' Nowshehra'],['Nowshera','Nowshera','Nowshera','Nowshera'],inplace=True)
+df['Location'].replace([' Rohri'],['Rohri'],inplace=True)
+df['Location'].replace([' Shaheed Benazirabad',' Shaheed benazirabad',' Sakrand'],['Shaheed Benazirabad','Shaheed Benazirabad','Shaheed Benazirabad'],inplace=True)
+df['Location'].replace([' Shikarpur'],['Shikarpur'],inplace=True)
+df['Location'].replace([' Gotki',' Ghotki','Daharki','Qadirpur'],['Ghotki','Ghotki','Ghotki','Ghotki'],inplace=True)
+df['Location'].replace([' haripur'],['Haripur'],inplace=True)
+df['Location'].replace([' Cherat'],['Cherat'],inplace=True)
+df['Location'].replace([' Ghambat'],['Ghambat'],inplace=True)
+df['Location'].replace([' Panjgur'],['Panjgur'],inplace=True)
+df['Location'].replace([' D.I Khan','Dera ismail khan',' Dera Ismail Khan','Dera Ismail Khan',' DI Khan','DI Khan',' Dera ismail khan'],['D.I Khan','D.I Khan','D.I Khan','D.I Khan','D.I Khan','D.I Khan','D.I Khan'],inplace=True)
+df['Location'].replace([' Nankana Sahib'],['Nankana Sahib'],inplace=True)
+df['Location'].replace(['Kotmomin',' bhalwal. Sargodha'],['Sargodha','Sargodha'],inplace=True)
+df['Location'].replace([' Kalabagh'],['Kalabagh'],inplace=True)
+df['Location'].replace([' kasur',' Kasur',],['Kasur','Kasur'],inplace=True)
+df['Location'].replace([' Rural Balochistan'],['Balochistan'],inplace=True)
+df['Location'].replace([' Timergara'],['Timergara'],inplace=True)
+df['Location'].replace([' Kamalia'],['Kamalia'],inplace=True)
+df['Location'].replace([' Ahmadpur East','Yazman Mandi'],['Bahawalpur','Bahawalpur'],inplace=True)
+df['Location'].replace([' Kamalia'],['Kamalia'],inplace=True)
+df['Location'].replace([' Dargai'],['Dargai'],inplace=True)
+df['Location'].replace([' Kashmore','Kandhkot'],['Kashmore','Kashmore'],inplace=True)
+df['Location'].replace([' Bhawalnagar',' Bahawalnagar',' Chishtian'],['Bahawalnagar','Bahawalnagar','Bahawalnagar'],inplace=True)
+df['Location'].replace([' Rahim yar Khan',' Rahim yar khan',' Rahimyarkhan',' RahimyarKhan','Rahim Yaar Khan','Rahim yar khan',' Rahim Yar Khan','Rahim yar Khan','Rahimyar Khan'],['Rahim yar Khan','Rahim yar Khan','Rahim yar Khan','Rahim yar Khan','Rahim yar Khan','Rahim yar Khan','Rahim yar Khan','Rahim yar Khan','Rahim yar Khan'],inplace=True)
+df['Location'].replace([' Naseerabad'],['Naseerabad'],inplace=True)
+df['Location'].replace(['Hattar Industrial Estate',' Hattar'],['Hattar','Hattar'],inplace=True)
+df['Location'].replace([' Kanpur',' Khanpur'],['Khanpur','Khanpur'],inplace=True)
+df['Location'].replace([' Bela',' Lasbela'],['Lasbela','Lasbela'],inplace=True)
+df['Location'].replace([' Shahdadpur'],['Shahdadpur'],inplace=True)
+df['Location'].replace([' Sarai alamgir',' Sarai alamgir'],['Sarai alamgir','Sarai alamgir'],inplace=True)
+df['Location'].replace([' Kahuta'],['Kahuta'],inplace=True)
+df['Location'].replace([' Kot Ghulam Muhammad'],['Mirpur Khas'],inplace=True)
+df['Location'].replace([' Kallar Syedan'],['Kallar Syedan'],inplace=True)
+df['Location'].replace([' Kohat',' Kohat'],['Kohat','Kohat'],inplace=True)
+df['Location'].replace([' Hafizabad'],['Hafizabad'],inplace=True)
+df['Location'].replace([' Layyah','Karor Lal Esan'],['Layyah','Layyah'],inplace=True)
+df['Location'].replace([' Lodhran'],['Lodhran'],inplace=True)
+df['Location'].replace([' Mailsi'],['Mailsi'],inplace=True)
+df['Location'].replace([' Sadiqabad',' SadiqAbad',],['Sadiqabad','Sadiqabad'],inplace=True)
+df['Location'].replace([' Shorkot'],['Jhang'],inplace=True)
+df['Location'].replace([' Shujabad'],['Shujabad'],inplace=True)
+df['Location'].replace([' Nooriabad','Kotri'],['Jamshoro','Jamshoro'],inplace=True)
+df['Location'].replace([' Narowal',' Zafarwal'],['Narowal','Narowal'],inplace=True)
+df['Location'].replace([' Shakargarh'],['Shakargarh'],inplace=True)
+df['Location'].replace([' Chakwal'],['Chakwal'],inplace=True)
+df['Location'].replace([' Badin',' Tando bago'],['Badin','Badin'],inplace=True)
+df['Location'].replace([' Umerkot','Umarkot'],['Umerkot','Umerkot'],inplace=True)
+df['Location'].replace([' Nosheroferoze'],['Naushahro Feroze'],inplace=True)
+df['Location'].replace([' Dadu'],['Dadu'],inplace=True)
+df['Location'].replace([' Nawabshah'],['Nawabshah'],inplace=True)
+df['Location'].replace([' Pakpattan'],['Pakpattan'],inplace=True)
+df['Location'].replace([' Khanewal',' Kabirwala'],['Khanewal','Khanewal'],inplace=True)
+df['Location'].replace(['bahawalpur','Ahmadpur East',' Hasilpur','Daska',' Ahmadpur east',' Daska','Mukhtarabad'],['Bahawalpur','Bahawalpur','Bahawalpur','Bahawalpur','Bahawalpur','Bahawalpur','Bahawalpur'],inplace=True)
+df['Location'].replace(['Gadoon Amazai',' Gadoon Amazai'],['Swabi','Swabi'],inplace=True)
+df['Location'].replace([' Khushab'],['Khushab'],inplace=True)
+df['Location'].replace([' Jampur'],['Jampur'],inplace=True)
+df['Location'].replace([' Khushab'],['Khushab'],inplace=True)
+df['Location'].replace([' Gwadar',' Pasni'],['Gwadar','Gwadar'],inplace=True)
+df['Location'].replace([' Gojra'],['Gojra'],inplace=True)    
+df['Location'].replace([' Haripur','haripur',],['Haripur','Haripur'],inplace=True)
+df['Location'].replace([' Havelian'],['Havelian'],inplace=True)
+df['Location'].replace([' Hazara'],['Hazara'],inplace=True)
+df['Location'].replace([' Kharian'],['Kharian'],inplace=True)
+df['Location'].replace([' Ahmed Nager Chatha'],['Ahmed Nager Chatha'],inplace=True)
+df['Location'].replace([' Lalian'],['Chiniot'],inplace=True)
+df['Location'].replace([' Burewala'],['Burewala'],inplace=True)
+df['Location'].replace([' Mirpur khas',' Mirpurkhas','Mirpur Khas',' Mirpur Khas'],['Mirpur khas','Mirpur khas','Mirpur khas','Mirpur khas'],inplace=True)
+df['Location'].replace([' Fateh Jang','Fateh jang'],['Fateh Jang','Fateh Jang'],inplace=True)
+df['Location'].replace([' Gilgit',' Jutial Gilgit','Challas',],['Gilgit','Gilgit','Gilgit'],inplace=True)
+df['Location'].replace([' Skardu'],['Skardu'],inplace=True)
+df['Location'].replace([' Swat','Mingora',' Mingora',],['Swat','Swat','Swat'],inplace=True)
+df['Location'].replace([' Toba Tek Singh',' Toba tek singh'],['Toba Tek Singh','Toba Tek Singh'],inplace=True)
+df['Location'].replace([' Rajanpur'],['Rajanpur'],inplace=True)
+df['Location'].replace([' Khuzdar'],['Khuzdar'],inplace=True)
+df['Location'].replace([' Pishin'],['Pishin'],inplace=True)
+df['Location'].replace([' Ziarat'],['Ziarat'],inplace=True)
+df['Location'].replace([' Rawalakot'],['Rawalakot'],inplace=True)
+df['Location'].replace([' Balochistan',' Baluchistan'],['Balochistan','Balochistan'],inplace=True)
+df['Location'].replace([' Bhakkar'],['Bhakkar'],inplace=True)
+df['Location'].replace([' Besham'],['Besham'],inplace=True)
+df['Location'].replace(['salam'],['Salam'],inplace=True)
+df['Location'].replace([' Sararogha','Sararogha'],['FATA','FATA'],inplace=True)
+df['Location'].replace(['Nooriabad',' Jamshoro'],['Jamshoro','Jamshoro'],inplace=True)
+df['Location'].replace([' Akora khattak'],['Akora khattak'],inplace=True)
+df['Location'].replace([' Washuk'],['Washuk'],inplace=True)
+df['Location'].replace([' Chichawatni'],['Chichawatni'],inplace=True)
+df['Location'].replace([' Mandi bahauddin','Bhkhi'],['Mandi bahauddin','Mandi bahauddin'],inplace=True)
+df['Location'].replace([' Qambar shahdadkot'],['Qambar shahdadkot',],inplace=True)
+df['Location'].replace([' Dir Upper'],['Upper Dir'],inplace=True)
+df['Location'].replace([' Dina'],['Dina'],inplace=True)
+df['Location'].replace([' Nankana sahib','Nankana sahib'],['Nankana Sahib','Nankana Sahib'],inplace=True)
+df['Location'].replace(['Kunri'],['Umarkot'],inplace=True)
+df['Location'].replace([' Ayubia'],['Ayubia'],inplace=True)
+df['Location'].replace([' Kalam'],['Kalam'],inplace=True)
+df['Location'].replace([' Jafarabad'],['Jafarabad'],inplace=True)
+df['Location'].replace([' Dalbandin'],['Dalbandin'],inplace=True)
+df['Location'].replace([' Zhob'],['Zhob'],inplace=True)
+df['Location'].replace([' Tank'],['Tank'],inplace=True) 
+df['Location'].replace([' Shujabad'],['Shujabad'],inplace=True)
+df['Location'].replace(['Taunsa'],['Taunsa Sharif'],inplace=True) 
+df['Location'].replace(['Kamokey'],['Kamoke'],inplace=True)
+df['Location'].replace(['Khaipur'],['Khairpur'],inplace=True)
+df['Location'].replace([' Jaranwala'],['Jaranwala'],inplace=True)
+df['Location'].replace(['khanewal'],['Khanewal'],inplace=True)
+df['Location'].replace(['Banu'],['Bannu'],inplace=True)
+df['Location'].replace(['Sukkar'],['Sukkur'],inplace=True)
+df['Location'].replace(['Shaikhupra'],['Sheikhupura'],inplace=True)
+df['Location'].replace(['Jaffarabad'],['Jafarabad'],inplace=True)
+df['Location'].replace([' Sibi'],['Sibi'],inplace=True)
+df['Location'].replace(['Mirpurkhas'],['Mirpur Khas'],inplace=True)
+df['Location'].replace(['Hari Pur'],['HariPur'],inplace=True)
+df['Location'].replace(['Jalal Pur Jatan'],['JalalPur Jatan'],inplace=True)
+
+df['Location'].replace(['Jedah','USA','Beijing','kabul','Jubail','Dammam','Saudia Arbia','Wisconson USA',' Colombo','King Abdullah Economic City',' Abu Dhabi','Bareq','Riyadh','Oman','dubai',' Muzz',' California',' Panama',' Malaysia',' Sunnyvale','Sharjah','Rayad',' Las Bella','Bela','Al Omran','Jubail Industrial City','Yantai','Panama','Ahad Rufaidah',' Muscat','port-harcourt','Redmond','Tripoli','Bahrah','Dubai',' Kingdom of Saudi Arabia','Markaz Safwa','Yazd','Mumbai','Jeddah',' UAE','Muscat','Singapore',' Nigeria','Uae',' London',' Copenhagen','Kabul',' Kuala Lumpur',' Dubai',' Sydney','Worldwide','Abu Dhabi','USA','saudi arabia','Dhahran',' Saudi Arabia','Doha',' Afghanistan',' Singapore'],['Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country','Foreign Country'],inplace=True)
+
+
+df.Location.value_counts()
+
+
+
+
+#===================================================================================================================================
+#====================================================================================================================================
+
+# replace diff value
+df['MiniSalary'].replace(['1 Year',' nan','1 Year','n 1 Yea'],['0','0','0','0'],inplace=True)
+df['MaxSalary'].replace(['600+000','70000r'],['600','70000'],inplace=True)
+df['Currency'].replace(['r'],['PKR'],inplace=True)
+
+
+
+#===================================================================================================================================
+#====================================================================================================================================
+
+# change the datatypes of min max salary columns
+df.MiniSalary= df.MiniSalary.astype(float)
+df.MaxSalary= df.MaxSalary.astype(float)
+
+#===================================================================================================================================
+#====================================================================================================================================
+
+# currency conversion
+
+df.loc[df['Currency'].str.contains('USD'),'MiniSalary']=df['MiniSalary']*136
+df.loc[df['Currency'].str.contains('USD'),'MaxSalary']=df['MaxSalary']*136
+df.Currency.replace(['USD', 'PKR'] ,inplace=True)
+
+
+df.loc[df['Currency'].str.contains('KHR'),'MiniSalary']=df['MiniSalary']*0.035
+df.loc[df['Currency'].str.contains('KHR'),'MaxSalary']=df['MaxSalary']*0.035
+df.Currency.replace(['KHR', 'PKR'] ,inplace=True)
+
+
+df.loc[df['Currency'].str.contains('SAR'),'MiniSalary']=df['MiniSalary']*37
+df.loc[df['Currency'].str.contains('SAR'),'MaxSalary']=df['MaxSalary']*37
+df.Currency.replace(['SAR', 'PKR'] ,inplace=True)
+
+
+df.loc[df['Currency'].str.contains('AFN'),'MiniSalary']=df['MiniSalary']*1.85
+df.loc[df['Currency'].str.contains('AFN'),'MaxSalary']=df['MaxSalary']*1.85
+df.Currency.replace(['AFN', 'PKR'] ,inplace=True)
+
+
+df.loc[df['Currency'].str.contains('ALL'),'MiniSalary']=df['MiniSalary']*1.26
+df.loc[df['Currency'].str.contains('ALL'),'MaxSalary']=df['MaxSalary']*1.26
+df.Currency.replace(['ALL', 'PKR'] ,inplace=True)
+
+
+df.loc[df['Currency'].str.contains('RON'),'MiniSalary']=df['MiniSalary']*33
+df.loc[df['Currency'].str.contains('RON'),'MaxSalary']=df['MaxSalary']*33
+df.Currency.replace(['RON', 'PKR'] ,inplace=True)
+
+
+df.loc[df['Currency'].str.contains('GBP'),'MiniSalary']=df['MiniSalary']*185
+df.loc[df['Currency'].str.contains('GBP'),'MaxSalary']=df['MaxSalary']*185
+df.Currency.replace(['GBP', 'PKR'] ,inplace=True)
+
+
+
+df.loc[df['Currency'].str.contains('EUR'),'MiniSalary']=df['MiniSalary']*157
+df.loc[df['Currency'].str.contains('EUR'),'MaxSalary']=df['MaxSalary']*157
+df.Currency.replace(['EUR', 'PKR'] ,inplace=True)
+
+
+
+
+df.loc[df['Currency'].str.contains('RSD'),'MiniSalary']=df['MiniSalary']*1.3
+df.loc[df['Currency'].str.contains('RSD'),'MaxSalary']=df['MaxSalary']*1.3
+df.Currency.replace(['RSD', 'PKR'] ,inplace=True)
+
+
+
+df.loc[df['Currency'].str.contains('AED'),'MiniSalary']=df['MiniSalary']*37
+df.loc[df['Currency'].str.contains('AED'),'MaxSalary']=df['MaxSalary']*37
+df.Currency.replace(['AED', 'PKR'] ,inplace=True)
+
+
+
+df.loc[df['Currency'].str.contains('PHP'),'MiniSalary']=df['MiniSalary']*2.6
+df.loc[df['Currency'].str.contains('PHP'),'MaxSalary']=df['MaxSalary']*2.6
+df.Currency.replace(['PHP', 'PKR'] ,inplace=True)
+
+
+
+df.loc[df['Currency'].str.contains('PAB'),'MiniSalary']=df['MiniSalary']*139
+df.loc[df['Currency'].str.contains('PAB'),'MaxSalary']=df['MaxSalary']*139
+df.Currency.replace(['PAB', 'PKR'] ,inplace=True)
+
+
+
+df.loc[df['Currency'].str.contains('CAD'),'MiniSalary']=df['MiniSalary']*104
+df.loc[df['Currency'].str.contains('CAD'),'MaxSalary']=df['MaxSalary']*104
+df.Currency.replace(['CAD', 'PKR'] ,inplace=True)
+
+
+
+df.loc[df['Currency'].str.contains('JPY'),'MiniSalary']=df['MiniSalary']*1.25
+df.loc[df['Currency'].str.contains('JPY'),'MaxSalary']=df['MaxSalary']*1.25
+df.Currency.replace(['JPY', 'PKR'] ,inplace=True)
+
+
+
+df.loc[df['Currency'].str.contains('RUB'),'MiniSalary']=df['MiniSalary']*2
+df.loc[df['Currency'].str.contains('RUB'),'MaxSalary']=df['MaxSalary']*2
+df.Currency.replace(['RUB', 'PKR'] ,inplace=True)
+
+df
+
+#===================================================================================================================================
+#====================================================================================================================================
+
+
+# add lat long column values of locations
+
+
+# For Islamabad
+df.loc[df['Location'].str.contains("Islamabad", na=False),'Latitude']=33.738045
+df.loc[df['Location'].str.contains("Islamabad", na=False),'Longitude']=73.084488
+
+# For Rawalpindi
+df.loc[df['Location'].str.contains("Rawalpindi", na=False),'Latitude']=33.626057
+df.loc[df['Location'].str.contains("Rawalpindi", na=False),'Longitude']=73.071442
+
+# For Karachi
+df.loc[df['Location'].str.contains("Karachi", na=False),'Latitude']=24.926294
+df.loc[df['Location'].str.contains("Karachi", na=False),'Longitude']=67.022095
+
+# For Lahore
+df.loc[df['Location'].str.contains("Lahore", na=False),'Latitude']=31.582045
+df.loc[df['Location'].str.contains("Lahore", na=False),'Longitude']=74.329376
+
+# For Faisalabad
+df.loc[df['Location'].str.contains("Faisalabad", na=False),'Latitude']=31.418715
+df.loc[df['Location'].str.contains("Faisalabad", na=False),'Longitude']=73.079109
+
+# For Khanewal
+df.loc[df['Location'].str.contains("Khanewal", na=False),'Latitude']=30.286415
+df.loc[df['Location'].str.contains("Khanewal", na=False),'Longitude']=71.932030
+
+# For Layyah
+df.loc[df['Location'].str.contains("Layyah", na=False),'Latitude']=30.964750
+df.loc[df['Location'].str.contains("Layyah", na=False),'Longitude']=70.939934
+
+# For Lodhran
+df.loc[df['Location'].str.contains("Lodhran", na=False),'Latitude']=29.54051
+df.loc[df['Location'].str.contains("Lodhran", na=False),'Longitude']=71.63357
+
+# For Mailsi
+df.loc[df['Location'].str.contains("Mailsi", na=False),'Latitude']=29.7921
+df.loc[df['Location'].str.contains("Mailsi", na=False),'Longitude']=72.1772
+
+# For Mian Channu
+df.loc[df['Location'].str.contains("Mian Channu", na=False),'Latitude']=30.4390
+df.loc[df['Location'].str.contains("Mian Channu", na=False),'Longitude']=72.3552
+
+# For Mianwali
+df.loc[df['Location'].str.contains("Mianwali", na=False),'Latitude']=32.5839
+df.loc[df['Location'].str.contains("Mianwali", na=False),'Longitude']=71.5370
+
+# For Multan
+df.loc[df['Location'].str.contains("Multan", na=False),'Latitude']=30.128036
+df.loc[df['Location'].str.contains("Multan", na=False),'Longitude']=71.386444
+
+# For Muzaffargarh
+df.loc[df['Location'].str.contains("Muzaffargarh", na=False),'Latitude']=30.074377
+df.loc[df['Location'].str.contains("Muzaffargarh", na=False),'Longitude']=71.184654
+
+# For Rahim yar Khan
+df.loc[df['Location'].str.contains("Rahim yar Khan", na=False),'Latitude']=28.421157 
+df.loc[df['Location'].str.contains("Rahim yar Khan", na=False),'Longitude']=70.298874
+
+# For Sadiqabad
+df.loc[df['Location'].str.contains("Sadiqabad", na=False),'Latitude']=28.310350 
+df.loc[df['Location'].str.contains("Sadiqabad", na=False),'Longitude']=70.127403
+
+# For Jhang
+df.loc[df['Location'].str.contains("Jhang", na=False),'Latitude']=31.278046 
+df.loc[df['Location'].str.contains("Jhang", na=False),'Longitude']=72.311760
+
+# For  Shujabad
+df.loc[df['Location'].str.contains("Shujabad", na=False),'Latitude']= 30.4833
+df.loc[df['Location'].str.contains("Shujabad", na=False),'Longitude']=72.5833
+
+# For  Vehari
+df.loc[df['Location'].str.contains("Vehari", na=False),'Latitude']= 30.0442
+df.loc[df['Location'].str.contains("Vehari", na=False),'Longitude']=72.3441
+
+# For  Wazirabad
+df.loc[df['Location'].str.contains("Wazirabad", na=False),'Latitude']= 32.4404
+df.loc[df['Location'].str.contains("Wazirabad", na=False),'Longitude']=74.1203
+
+# For  Shakargarh
+df.loc[df['Location'].str.contains("Shakargarh", na=False),'Latitude']= 32.2572
+df.loc[df['Location'].str.contains("Shakargarh", na=False),'Longitude']=75.1604
+
+# For  Sialkot
+df.loc[df['Location'].str.contains("Sialkot", na=False),'Latitude']= 32.517960
+df.loc[df['Location'].str.contains("Sialkot", na=False),'Longitude']=74.500916
+
+# For  Hyderabad
+df.loc[df['Location'].str.contains("Hyderabad", na=False),'Latitude']= 25.373190
+df.loc[df['Location'].str.contains("Hyderabad", na=False),'Longitude']=68.363174
+
+# For  Bahawalpur
+df.loc[df['Location'].str.contains("Bahawalpur", na=False),'Latitude']= 29.418068
+df.loc[df['Location'].str.contains("Bahawalpur", na=False),'Longitude']=71.670685
+
+# For  Sargodha
+df.loc[df['Location'].str.contains("Sargodha", na=False),'Latitude']= 32.0740
+df.loc[df['Location'].str.contains("Sargodha", na=False),'Longitude']=72.6861
+
+# For  Sukkur
+df.loc[df['Location'].str.contains("Sukkur", na=False),'Latitude']= 27.713926
+df.loc[df['Location'].str.contains("Sukkur", na=False),'Longitude']=68.836899
+
+# For  Sahiwal
+df.loc[df['Location'].str.contains("Sahiwal", na=False),'Latitude']= 30.677717
+df.loc[df['Location'].str.contains("Sahiwal", na=False),'Longitude']=73.106812
+
+# For  Peshawar
+df.loc[df['Location'].str.contains("Peshawar", na=False),'Latitude']= 34.025917
+df.loc[df['Location'].str.contains("Peshawar", na=False),'Longitude']=71.560135
+
+# For Nawabshah
+df.loc[df['Location'].str.contains("Nawabshah", na=False),'Latitude']= 26.244221
+df.loc[df['Location'].str.contains("Nawabshah", na=False),'Longitude']=68.410034
+
+# For Hala Naka
+df.loc[df['Location'].str.contains("Hala Naka", na=False),'Latitude']= 25.4220
+df.loc[df['Location'].str.contains("Hala Naka", na=False),'Longitude']=68.3809
+
+# For Sindh
+df.loc[df['Location'].str.contains("Sindh", na=False),'Latitude']= 24.940090
+df.loc[df['Location'].str.contains("Sindh", na=False),'Longitude']=68.230881
+
+# For Phool Nagar
+df.loc[df['Location'].str.contains("Phool Nagar", na=False),'Latitude']= 31.2058
+df.loc[df['Location'].str.contains("Phool Nagar", na=False),'Longitude']=73.9370
+
+# For Pattoki
+df.loc[df['Location'].str.contains("Pattoki", na=False),'Latitude']=  31.025009
+df.loc[df['Location'].str.contains("Pattoki", na=False),'Longitude']= 73.847878
+
+# For Bhai Pheru
+df.loc[df['Location'].str.contains("Bhai Pheru", na=False),'Latitude']=  31.205974
+df.loc[df['Location'].str.contains("Bhai Pheru", na=False),'Longitude']= 73.94186
+
+# For Chichawatni
+df.loc[df['Location'].str.contains("Chichawatni", na=False),'Latitude']=  30.535133
+df.loc[df['Location'].str.contains("Chichawatni", na=False),'Longitude']= 72.699539
+
+# For Barakahu
+df.loc[df['Location'].str.contains("Barakahu", na=False),'Latitude']=  33.7068
+df.loc[df['Location'].str.contains("Barakahu", na=False),'Longitude']= 73.0870
+
+# For Sheikhupura
+df.loc[df['Location'].str.contains("Sheikhupura", na=False),'Latitude']= 31.716661
+df.loc[df['Location'].str.contains("Sheikhupura", na=False),'Longitude']=73.985023
+
+# For Quetta
+df.loc[df['Location'].str.contains("Quetta", na=False),'Latitude']= 30.183270
+df.loc[df['Location'].str.contains("Quetta", na=False),'Longitude']=66.996452
+
+# For Gujrat
+df.loc[df['Location'].str.contains("Gujrat", na=False),'Latitude']= 32.571144
+df.loc[df['Location'].str.contains("Gujrat", na=False),'Longitude']=74.075005
+
+# For Jhelum
+df.loc[df['Location'].str.contains("Jhelum", na=False),'Latitude']= 32.940548
+df.loc[df['Location'].str.contains("Jhelum", na=False),'Longitude']=73.727631
+
+# For Muridke
+df.loc[df['Location'].str.contains("Muridke", na=False),'Latitude']= 31.8095
+df.loc[df['Location'].str.contains("Muridke", na=False),'Longitude']=74.2534
+
+# For Rohri
+df.loc[df['Location'].str.contains("Rohri", na=False),'Latitude']= 27.6687
+df.loc[df['Location'].str.contains("Rohri", na=False),'Longitude']=68.8943
+
+# For Mirpur
+df.loc[df['Location'].str.contains("Mirpur", na=False),'Latitude']= 33.148392
+df.loc[df['Location'].str.contains("Mirpur", na=False),'Longitude']=73.751770
+
+# For Rahim Yar Khan
+df.loc[df['Location'].str.contains("Rahim Yar Khan", na=False),'Latitude']= 28.421157 
+df.loc[df['Location'].str.contains("Rahim Yar Khan", na=False),'Longitude']=70.298874
+
+# For Larkana
+df.loc[df['Location'].str.contains("Larkana", na=False),'Latitude']= 27.5570
+df.loc[df['Location'].str.contains("Larkana", na=False),'Longitude']=68.2028
+
+# For Taunsa
+df.loc[df['Location'].str.contains("Taunsa", na=False),'Latitude']= 30.705557
+df.loc[df['Location'].str.contains("Taunsa", na=False),'Longitude']= 70.657776
+
+# For Hattar
+df.loc[df['Location'].str.contains("Hattar", na=False),'Latitude']= 33.8521
+df.loc[df['Location'].str.contains("Hattar", na=False),'Longitude']= 72.8501
+
+# For Kamoke
+df.loc[df['Location'].str.contains("Kamoke", na=False),'Latitude']= 31.975508
+df.loc[df['Location'].str.contains("Kamoke", na=False),'Longitude']= 74.223801
+
+# For Mardan
+df.loc[df['Location'].str.contains("Mardan", na=False),'Latitude']= 34.20195
+df.loc[df['Location'].str.contains("Mardan", na=False),'Longitude']= 72.05254
+
+# For Banu
+df.loc[df['Location'].str.contains("Banu", na=False),'Latitude']=  32.986111
+df.loc[df['Location'].str.contains("Banu", na=False),'Longitude']= 70.604164
+
+# For Abbottabad
+df.loc[df['Location'].str.contains("Abbottabad", na=False),'Latitude']= 34.050564
+df.loc[df['Location'].str.contains("Abbottabad", na=False),'Longitude']= 73.142212
+
+# For Hangu
+df.loc[df['Location'].str.contains("Hangu", na=False),'Latitude']= 33.5223
+df.loc[df['Location'].str.contains("Hangu", na=False),'Longitude']=71.0617
+
+# For Kohat
+df.loc[df['Location'].str.contains("Kohat", na=False),'Latitude']= 33.5889
+df.loc[df['Location'].str.contains("Kohat", na=False),'Longitude']=71.4429
+
+# For Pindi Bhatiyan
+df.loc[df['Location'].str.contains("Pindi Bhatiyan", na=False),'Latitude']= 31.8966
+df.loc[df['Location'].str.contains("Pindi Bhatiyan", na=False),'Longitude']=73.2824
+
+# For Muzaffarabad
+df.loc[df['Location'].str.contains("Muzaffarabad", na=False),'Latitude']=34.359688
+df.loc[df['Location'].str.contains("Muzaffarabad", na=False),'Longitude']=73.471054
+
+# For Khewra
+df.loc[df['Location'].str.contains("Khewra", na=False),'Latitude']=32.6305
+df.loc[df['Location'].str.contains("Khewra", na=False),'Longitude']=73.0110
+
+# For Khushab
+df.loc[df['Location'].str.contains("Khushab", na=False),'Latitude']=32.2955
+df.loc[df['Location'].str.contains("Khushab", na=False),'Longitude']=72.3489
+
+# For Attock
+df.loc[df['Location'].str.contains("Attock", na=False),'Latitude']=33.7660
+df.loc[df['Location'].str.contains("Attock", na=False),'Longitude']=72.3609
+
+# For D.I Khan
+df.loc[df['Location'].str.contains("D.I Khan", na=False),'Latitude']=31.8626
+df.loc[df['Location'].str.contains("D.I Khan", na=False),'Longitude']= 70.9019
+
+# For Taxila
+df.loc[df['Location'].str.contains("Taxila", na=False),'Latitude']=33.7463
+df.loc[df['Location'].str.contains("Taxila", na=False),'Longitude']=72.8397
+
+
+# For Hafizabad
+df.loc[df['Location'].str.contains("Hafizabad", na=False),'Latitude']=32.0712
+df.loc[df['Location'].str.contains("Hafizabad", na=False),'Longitude']=73.6895
+
+
+# For Lala Musa
+df.loc[df['Location'].str.contains("Lala Musa", na=False),'Latitude']=32.6993
+df.loc[df['Location'].str.contains("Lala Musa", na=False),'Longitude']=73.9562
+
+# For Moro
+df.loc[df['Location'].str.contains("Moro", na=False),'Latitude']=26.6684
+df.loc[df['Location'].str.contains("Moro", na=False),'Longitude']=67.9941
+
+# For Bahawalnagar
+df.loc[df['Location'].str.contains("Bahawalnagar", na=False),'Latitude']=30.0025
+df.loc[df['Location'].str.contains("Bahawalnagar", na=False),'Longitude']=73.2412
+
+
+# For D.G.Khan
+df.loc[df['Location'].str.contains("D.G.Khan", na=False),'Latitude']=30.0489
+df.loc[df['Location'].str.contains("D.G.Khan", na=False),'Longitude']=70.6455
+
+
+# For Kharian
+df.loc[df['Location'].str.contains("Kharian", na=False),'Latitude']=32.8143
+df.loc[df['Location'].str.contains("Kharian", na=False),'Longitude']=73.8831
+
+
+# For Shaheed Benazirabad
+df.loc[df['Location'].str.contains("Shaheed Benazirabad", na=False),'Latitude']=26.2988
+df.loc[df['Location'].str.contains("Shaheed Benazirabad", na=False),'Longitude']=68.2385
+
+# For Ghotki
+df.loc[df['Location'].str.contains("Ghotki", na=False),'Latitude']=28.0271
+df.loc[df['Location'].str.contains("Ghotki", na=False),'Longitude']=69.3235
+
+
+# For Khairpur
+df.loc[df['Location'].str.contains("Khairpur", na=False),'Latitude']=27.529951
+df.loc[df['Location'].str.contains("Khairpur", na=False),'Longitude']=68.758141
+
+# For Ranipur
+df.loc[df['Location'].str.contains("Ranipur", na=False),'Latitude']=27.2881
+df.loc[df['Location'].str.contains("Ranipur", na=False),'Longitude']=68.5068
+
+# For Batkhela
+df.loc[df['Location'].str.contains("Batkhela", na=False),'Latitude']=34.6138
+df.loc[df['Location'].str.contains("Batkhela", na=False),'Longitude']=71.9283
+
+# For Sialkot
+df.loc[df['Location'].str.contains("Sialkot", na=False),'Latitude']=32.4945
+df.loc[df['Location'].str.contains("Sialkot", na=False),'Longitude']=74.5229
+
+# For Johar Town
+df.loc[df['Location'].str.contains("Johar Town", na=False),'Latitude']=31.4697
+df.loc[df['Location'].str.contains("Johar Town", na=False),'Longitude']=74.2728
+
+# For Kasur
+df.loc[df['Location'].str.contains("Kasur", na=False),'Latitude']=31.118793
+df.loc[df['Location'].str.contains("Kasur", na=False),'Longitude']=74.463272
+
+# For Chakwal
+df.loc[df['Location'].str.contains("Chakwal", na=False),'Latitude']=32.9328
+df.loc[df['Location'].str.contains("Chakwal", na=False),'Longitude']=72.8630
+
+# For Thatta
+df.loc[df['Location'].str.contains("Thatta", na=False),'Latitude']=24.7475
+df.loc[df['Location'].str.contains("Thatta", na=False),'Longitude']=67.9106
+
+# For Badin
+df.loc[df['Location'].str.contains("Badin", na=False),'Latitude']=24.6459
+df.loc[df['Location'].str.contains("Badin", na=False),'Longitude']=68.8467
+
+# For Umerkot
+df.loc[df['Location'].str.contains("Umerkot", na=False),'Latitude']=25.3549
+df.loc[df['Location'].str.contains("Umerkot", na=False),'Longitude']=69.7376
+
+# For Naushahro Feroze
+df.loc[df['Location'].str.contains("Naushahro Feroze", na=False),'Latitude']=26.8463
+df.loc[df['Location'].str.contains("Naushahro Feroze", na=False),'Longitude']=68.1253
+
+# For Dadu
+df.loc[df['Location'].str.contains("Dadu", na=False),'Latitude']=26.7341
+df.loc[df['Location'].str.contains("Dadu", na=False),'Longitude']=67.7795
+
+# For Jacobabad
+df.loc[df['Location'].str.contains("Jacobabad", na=False),'Latitude']=28.2823
+df.loc[df['Location'].str.contains("Jacobabad", na=False),'Longitude']=68.4472
+
+# For Chiniot
+df.loc[df['Location'].str.contains("Chiniot", na=False),'Latitude']=31.7292
+df.loc[df['Location'].str.contains("Chiniot", na=False),'Longitude']=72.9822
+
+# For KPK
+df.loc[df['Location'].str.contains("KPK", na=False),'Latitude']=34.9526
+df.loc[df['Location'].str.contains("KPK", na=False),'Longitude']=72.3311
+
+# For Mirpur khas
+df.loc[df['Location'].str.contains("Mirpur khas", na=False),'Latitude']=25.5065
+df.loc[df['Location'].str.contains("Mirpur khas", na=False),'Longitude']=69.0136
+
+# For Gilgit
+df.loc[df['Location'].str.contains("Gilgit", na=False),'Latitude']=35.91869
+df.loc[df['Location'].str.contains("Gilgit", na=False),'Longitude']=74.31245
+
+# For Baltistan
+df.loc[df['Location'].str.contains("Baltistan", na=False),'Latitude']=35.281967
+df.loc[df['Location'].str.contains("Baltistan", na=False),'Longitude']=74.841942
+
+# For Sohrab Goth
+df.loc[df['Location'].str.contains("Sohrab Goth", na=False),'Latitude']=24.926294 
+df.loc[df['Location'].str.contains("Sohrab Goth", na=False),'Longitude']=67.022095
+
+# For Kashmire
+df.loc[df['Location'].str.contains("Kashmire", na=False),'Latitude']=33.148392 
+df.loc[df['Location'].str.contains("Kashmire", na=False),'Longitude']= 73.751770
+
+# For Punjab
+df.loc[df['Location'].str.contains("Punjab", na=False),'Latitude']=31.1704 
+df.loc[df['Location'].str.contains("Punjab", na=False),'Longitude']= 72.7097
+
+# For Chishtian
+df.loc[df['Location'].str.contains("Chishtian", na=False),'Latitude']=29.7956 
+df.loc[df['Location'].str.contains("Chishtian", na=False),'Longitude']= 72.8634
+
+# For Pakpattan
+df.loc[df['Location'].str.contains("Pakpattan", na=False),'Latitude']=30.3573 
+df.loc[df['Location'].str.contains("Pakpattan", na=False),'Longitude']= 73.3827
+
+# For Okara
+df.loc[df['Location'].str.contains("Okara", na=False),'Latitude']=30.8138 
+df.loc[df['Location'].str.contains("Okara", na=False),'Longitude']= 73.4534
+
+# For Taunsa Sharif
+df.loc[df['Location'].str.contains("Taunsa Sharif", na=False),'Latitude']=30.7046 
+df.loc[df['Location'].str.contains("Taunsa Sharif", na=False),'Longitude']= 70.6574
+
+# For Jafarabad
+df.loc[df['Location'].str.contains("Jafarabad", na=False),'Latitude']=28.3009 
+df.loc[df['Location'].str.contains("Jafarabad", na=False),'Longitude']= 68.1908
+
+# For Bhalwal
+df.loc[df['Location'].str.contains("Bhalwal", na=False),'Latitude']=32.2751 
+df.loc[df['Location'].str.contains("Bhalwal", na=False),'Longitude']= 72.9047
+
+# For Swabi
+df.loc[df['Location'].str.contains("Swabi", na=False),'Latitude']=34.1241 
+df.loc[df['Location'].str.contains("Swabi", na=False),'Longitude']= 72.4613
+
+# For Kamber ali khan
+df.loc[df['Location'].str.contains("Kamber ali khan", na=False),'Latitude']=34.1241 
+df.loc[df['Location'].str.contains("Kamber ali khan", na=False),'Longitude']= 68.0595
+
+# For Jampur
+df.loc[df['Location'].str.contains("Jampur", na=False),'Latitude']=29.6459 
+df.loc[df['Location'].str.contains("Jampur", na=False),'Longitude']= 70.5919
+
+# For  Jaranwala
+df.loc[df['Location'].str.contains("Jaranwala", na=False),'Latitude']=31.3454 
+df.loc[df['Location'].str.contains("Jaranwala", na=False),'Longitude']= 73.4298
+
+# For Gwadar
+df.loc[df['Location'].str.contains("Gwadar", na=False),'Latitude']=25.2460
+df.loc[df['Location'].str.contains("Gwadar", na=False),'Longitude']= 62.2861
+
+# For Lasbela
+df.loc[df['Location'].str.contains("Lasbela", na=False),'Latitude']=25.8700
+df.loc[df['Location'].str.contains("Lasbela", na=False),'Longitude']= 66.7129
+
+# For Gojra
+df.loc[df['Location'].str.contains("Gojra", na=False),'Latitude']=31.1505
+df.loc[df['Location'].str.contains("Gojra", na=False),'Longitude']= 72.6812
+
+# For Haripur
+df.loc[df['Location'].str.contains("Haripur", na=False),'Latitude']=33.9946
+df.loc[df['Location'].str.contains("Haripur", na=False),'Longitude']= 72.9106
+
+# For Havelian
+df.loc[df['Location'].str.contains("Havelian", na=False),'Latitude']=34.0435
+df.loc[df['Location'].str.contains("Havelian", na=False),'Longitude']= 73.1409
+
+# For Hazara
+df.loc[df['Location'].str.contains("Hazara", na=False),'Latitude']=32.7962
+df.loc[df['Location'].str.contains("Hazara", na=False),'Longitude']=74.2840
+
+# For Mansehra
+df.loc[df['Location'].str.contains("Mansehra", na=False),'Latitude']=32.7962
+df.loc[df['Location'].str.contains("Mansehra", na=False),'Longitude']=73.1980
+
+# For Wah cantt
+df.loc[df['Location'].str.contains("Wah cantt", na=False),'Latitude']=33.7715
+df.loc[df['Location'].str.contains("Wah cantt", na=False),'Longitude']=72.7511
+
+# For Hassan Abdal
+df.loc[df['Location'].str.contains("Hassan Abdal", na=False),'Latitude']=33.8210
+df.loc[df['Location'].str.contains("Hassan Abdal", na=False),'Longitude']=72.6800
+
+# For Rawat
+df.loc[df['Location'].str.contains("Hassan Abdal", na=False),'Latitude']=33.4951
+df.loc[df['Location'].str.contains("Hassan Abdal", na=False),'Longitude']=73.1969
+
+# For Fateh Jang
+df.loc[df['Location'].str.contains("Fateh Jang", na=False),'Latitude']=33.5673
+df.loc[df['Location'].str.contains("Fateh Jang", na=False),'Longitude']=72.6506
+
+# For Arif wala
+df.loc[df['Location'].str.contains("Arif wala", na=False),'Latitude']=30.2867
+df.loc[df['Location'].str.contains("Arif wala", na=False),'Longitude']=73.0582
+
+# For Burewala
+df.loc[df['Location'].str.contains("Burewala", na=False),'Latitude']=30.1593
+df.loc[df['Location'].str.contains("Burewala", na=False),'Longitude']=72.6943
+
+# For Sanghar
+df.loc[df['Location'].str.contains("Sanghar", na=False),'Latitude']=26.0436
+df.loc[df['Location'].str.contains("Sanghar", na=False),'Longitude']=68.9480
+
+# For Tando muhammad khan
+df.loc[df['Location'].str.contains("Tando muhammad khan", na=False),'Latitude']=25.1256
+df.loc[df['Location'].str.contains("Tando muhammad khan", na=False),'Longitude']=68.5426
+
+# For Nowshera
+df.loc[df['Location'].str.contains("Nowshera", na=False),'Latitude']=34.0105
+df.loc[df['Location'].str.contains("Nowshera", na=False),'Longitude']=71.9876
+
+# For Skardu
+df.loc[df['Location'].str.contains("Skardu", na=False),'Latitude']=35.3000
+df.loc[df['Location'].str.contains("Skardu", na=False),'Longitude']=75.6167
+
+# For Dina
+df.loc[df['Location'].str.contains("Dina", na=False),'Latitude']=33.0279
+df.loc[df['Location'].str.contains("Dina", na=False),'Longitude']=73.6012
+
+# For Charsadda
+df.loc[df['Location'].str.contains("Charsadda", na=False),'Latitude']=34.1682
+df.loc[df['Location'].str.contains("Charsadda", na=False),'Longitude']=71.7504
+
+# For Dargai
+df.loc[df['Location'].str.contains("Dargai", na=False),'Latitude']=34.1798
+df.loc[df['Location'].str.contains("Charsadda", na=False),'Longitude']=71.8883
+
+# For Gujar Khan
+df.loc[df['Location'].str.contains("Gujar Khan", na=False),'Latitude']=33.2616
+df.loc[df['Location'].str.contains("Gujar Khan", na=False),'Longitude']=73.3058
+
+# For Murree
+df.loc[df['Location'].str.contains("Murree", na=False),'Latitude']=33.9070
+df.loc[df['Location'].str.contains("Murree", na=False),'Longitude']=73.3943
+
+# For Ahmed Nager Chatha
+df.loc[df['Location'].str.contains("Ahmed Nager Chatha", na=False),'Latitude']=32.3136
+df.loc[df['Location'].str.contains("Ahmed Nager Chatha", na=False),'Longitude']=73.9918
+
+# For Khanpur
+df.loc[df['Location'].str.contains("Khanpur", na=False),'Latitude']=28.6332
+df.loc[df['Location'].str.contains("Khanpur", na=False),'Longitude']=70.6574
+
+# For Manga
+df.loc[df['Location'].str.contains("Manga", na=False),'Latitude']=31.0838
+df.loc[df['Location'].str.contains("Manga", na=False),'Longitude']=73.9945
+
+# For Swat
+df.loc[df['Location'].str.contains("Swat", na=False),'Latitude']=35.2227
+df.loc[df['Location'].str.contains("Swat", na=False),'Longitude']=72.4258
+
+
+# For Toba Tek Singh
+df.loc[df['Location'].str.contains("Toba Tek Singh", na=False),'Latitude']=30.9709
+df.loc[df['Location'].str.contains("Toba Tek Singh", na=False),'Longitude']=72.4826
+
+# For Rajanpur
+df.loc[df['Location'].str.contains("Rajanpur", na=False),'Latitude']=29.1044
+df.loc[df['Location'].str.contains("Rajanpur", na=False),'Longitude']=70.3301
+
+# For Gujranawala
+df.loc[df['Location'].str.contains("Gujranawala", na=False),'Latitude']=32.1877
+df.loc[df['Location'].str.contains("Gujranawala", na=False),'Longitude']=74.1945
+
+# For Kallar Syedan
+df.loc[df['Location'].str.contains("Kallar Syedan", na=False),'Latitude']=33.4127
+df.loc[df['Location'].str.contains("Kallar Syedan", na=False),'Longitude']=73.4887
+
+# For Khuzdar
+df.loc[df['Location'].str.contains("Khuzdar", na=False),'Latitude']=27.8165
+df.loc[df['Location'].str.contains("Khuzdar", na=False),'Longitude']=66.6057
+
+# For Lakki Marwat
+df.loc[df['Location'].str.contains("Lakki Marwat", na=False),'Latitude']=32.5763
+df.loc[df['Location'].str.contains("Lakki Marwat", na=False),'Longitude']=70.9071
+
+# For Tharparkar
+df.loc[df['Location'].str.contains("Tharparkar", na=False),'Latitude']=24.8777
+df.loc[df['Location'].str.contains("Tharparkar", na=False),'Longitude']=70.2408
+
+# For Pishin
+df.loc[df['Location'].str.contains("Pishin", na=False),'Latitude']=30.5897
+df.loc[df['Location'].str.contains("Pishin", na=False),'Longitude']=67.0107
+
+# For Ziarat
+df.loc[df['Location'].str.contains("Ziarat", na=False),'Latitude']=30.3939
+df.loc[df['Location'].str.contains("Ziarat", na=False),'Longitude']=67.7169
+
+
+# For Rawalakot
+df.loc[df['Location'].str.contains("Rawalakot", na=False),'Latitude']=33.850277
+df.loc[df['Location'].str.contains("Rawalakot", na=False),'Longitude']=73.79888
+
+# For Balochistan
+df.loc[df['Location'].str.contains("Balochistan", na=False),'Latitude']=28.4907
+df.loc[df['Location'].str.contains("Balochistan", na=False),'Longitude']=65.0958
+
+# For khanewal
+df.loc[df['Location'].str.contains("Khanewal", na=False),'Latitude']=230.2864
+df.loc[df['Location'].str.contains("Khanewal", na=False),'Longitude']=71.9320
+
+# For Akora khattak
+df.loc[df['Location'].str.contains("Akora khattak", na=False),'Latitude']=33.9950
+df.loc[df['Location'].str.contains("Akora khattak", na=False),'Longitude']=72.1357
+
+# For Bhakka
+df.loc[df['Location'].str.contains("Bhakka", na=False),'Latitude']=31.6333
+df.loc[df['Location'].str.contains("Bhakka", na=False),'Longitude']=71.0666
+
+# For Thall
+df.loc[df['Location'].str.contains("Thall", na=False),'Latitude']=33.3693
+df.loc[df['Location'].str.contains("Thall", na=False),'Longitude']=70.5443
+
+# For Tank
+df.loc[df['Location'].str.contains("Tank", na=False),'Latitude']=32.2162
+df.loc[df['Location'].str.contains("Tank", na=False),'Longitude']=70.3896
+
+# For Bannu
+df.loc[df['Location'].str.contains("Bannu", na=False),'Latitude']=32.9910
+df.loc[df['Location'].str.contains("Bannu", na=False),'Longitude']=70.6455
+
+# For Mandi bahauddin
+df.loc[df['Location'].str.contains("Mandi bahauddin", na=False),'Latitude']=32.9910
+df.loc[df['Location'].str.contains("Mandi bahauddin", na=False),'Longitude']=73.4828
+
+# For Karak
+df.loc[df['Location'].str.contains("Karak", na=False),'Latitude']=32.9910
+df.loc[df['Location'].str.contains("Karak", na=False),'Longitude']=71.095535
+
+
+# For Nankana Sahib
+df.loc[df['Location'].str.contains("Nankana Sahib", na=False),'Latitude']=32.9910
+df.loc[df['Location'].str.contains("Nankana Sahib", na=False),'Longitude']=73.7125
+
+
+# For Juharabad
+df.loc[df['Location'].str.contains("Juharabad", na=False),'Latitude']=32.2899
+df.loc[df['Location'].str.contains("Juharabad", na=False),'Longitude']=72.2719
+
+# For Dera Murad Jamali
+df.loc[df['Location'].str.contains("Dera Murad Jamali", na=False),'Latitude']=28.5492
+df.loc[df['Location'].str.contains("Dera Murad Jamali", na=False),'Longitude']=68.2147
+
+# For Surab
+df.loc[df['Location'].str.contains("Surab", na=False),'Latitude']=28.4901
+df.loc[df['Location'].str.contains("Surab", na=False),'Longitude']=66.2635
+
+# For Panjgur
+df.loc[df['Location'].str.contains("Panjgur", na=False),'Latitude']=26.7303
+df.loc[df['Location'].str.contains("Panjgur", na=False),'Longitude']=64.1478
+
+# For Bagh
+df.loc[df['Location'].str.contains("Bagh", na=False),'Latitude']=33.983
+df.loc[df['Location'].str.contains("Bagh", na=False),'Longitude']=73.783
+
+# For Besham
+df.loc[df['Location'].str.contains("Besham", na=False),'Latitude']=34.939423
+df.loc[df['Location'].str.contains("Besham", na=False),'Longitude']=72.871971
+
+# For Salam
+df.loc[df['Location'].str.contains("Salam", na=False),'Latitude']=34.939423
+df.loc[df['Location'].str.contains("Salam", na=False),'Longitude']=74.141980
+
+# For Shershah
+df.loc[df['Location'].str.contains("Shershah", na=False),'Latitude']=24.8836
+df.loc[df['Location'].str.contains("Shershah", na=False),'Longitude']=66.9884
+
+# For FATA
+df.loc[df['Location'].str.contains("FATA", na=False),'Latitude']=32.6675
+df.loc[df['Location'].str.contains("FATA", na=False),'Longitude']=69.8597
+
+# For Malakand
+df.loc[df['Location'].str.contains("Malakand", na=False),'Latitude']=34.5030
+df.loc[df['Location'].str.contains("Malakand", na=False),'Longitude']=71.9046
+
+# For Ayubia
+df.loc[df['Location'].str.contains("Ayubia", na=False),'Latitude']=34.0292
+df.loc[df['Location'].str.contains("Ayubia", na=False),'Longitude']=73.4026
+
+# For Kalam
+df.loc[df['Location'].str.contains("Kalam", na=False),'Latitude']=35.4902
+df.loc[df['Location'].str.contains("Kalam", na=False),'Longitude']=72.5796
+
+# For Risalpur
+df.loc[df['Location'].str.contains("Risalpur", na=False),'Latitude']=34.0751
+df.loc[df['Location'].str.contains("Risalpur", na=False),'Longitude']=71.9876
+
+# For Jaglot
+df.loc[df['Location'].str.contains("Jaglot", na=False),'Latitude']=34.0751
+df.loc[df['Location'].str.contains("Jaglot", na=False),'Longitude']=73.400
+
+
+# For Jalalabad
+df.loc[df['Location'].str.contains("Jalalabad", na=False),'Latitude']=30.1369
+df.loc[df['Location'].str.contains("Jalalabad", na=False),'Longitude']=71.3505
+
+# For Jalalpur bhattian
+df.loc[df['Location'].str.contains("Jalalpur bhattian", na=False),'Latitude']=32.0640
+df.loc[df['Location'].str.contains("Jalalpur bhattian", na=False),'Longitude']=73.3768
+
+# For Kalabagh
+df.loc[df['Location'].str.contains("Kalabagh", na=False),'Latitude']=32.9599
+df.loc[df['Location'].str.contains("Kalabagh", na=False),'Longitude']=71.5398
+
+# For Timergara
+df.loc[df['Location'].str.contains("Timergara", na=False),'Latitude']=34.8278
+df.loc[df['Location'].str.contains("Timergara", na=False),'Longitude']=71.8423
+
+# For Chaman
+df.loc[df['Location'].str.contains("Chaman", na=False),'Latitude']=30.9164
+df.loc[df['Location'].str.contains("Chaman", na=False),'Longitude']=66.4986
+
+# For Dalbandin
+df.loc[df['Location'].str.contains("Dalbandin", na=False),'Latitude']=28.8854
+df.loc[df['Location'].str.contains("Dalbandin", na=False),'Longitude']=64.3964
+
+# For Zhob
+df.loc[df['Location'].str.contains("Zhob", na=False),'Latitude']=31.3497
+df.loc[df['Location'].str.contains("Zhob", na=False),'Longitude']=69.4665
+
+# For Taftan
+df.loc[df['Location'].str.contains("Taftan", na=False),'Latitude']=28.9604
+df.loc[df['Location'].str.contains("Taftan", na=False),'Longitude']=61.5778
+
+# For Islamkot
+df.loc[df['Location'].str.contains("Islamkot", na=False),'Latitude']=24.7014
+df.loc[df['Location'].str.contains("Islamkot", na=False),'Longitude']=70.1783
+
+# For Kashmore
+df.loc[df['Location'].str.contains("Kashmore", na=False),'Latitude']=28.4482
+df.loc[df['Location'].str.contains("Kashmore", na=False),'Longitude']=69.5857
+
+# For TandoAllahyar
+df.loc[df['Location'].str.contains("TandoAllahyar", na=False),'Latitude']=25.4570
+df.loc[df['Location'].str.contains("TandoAllahyar", na=False),'Longitude']=68.7215
+
+# For Ghambat
+df.loc[df['Location'].str.contains("Ghambat", na=False),'Latitude']=27.3571
+df.loc[df['Location'].str.contains("Ghambat", na=False),'Longitude']=68.5188
+
+# For Jalalpur Jattan
+df.loc[df['Location'].str.contains("Jalalpur Jattan", na=False),'Latitude']=32.6480
+df.loc[df['Location'].str.contains("Jalalpur Jattan", na=False),'Longitude']=74.2121
+
+
+# For Mangla
+df.loc[df['Location'].str.contains("Mangla", na=False),'Latitude']=33.0947
+df.loc[df['Location'].str.contains("Mangla", na=False),'Longitude']=73.6418
+
+
+# For  Sibi
+df.loc[df['Location'].str.contains("Sibi", na=False),'Latitude']=29.5532
+df.loc[df['Location'].str.contains("Sibi", na=False),'Longitude']=67.8808
+
+# For  Dera Bugti
+df.loc[df['Location'].str.contains("Dera Bugti", na=False),'Latitude']=29.0352
+df.loc[df['Location'].str.contains("Dera Bugti", na=False),'Longitude']=69.1596
+
+# For Garhi Khairo
+df.loc[df['Location'].str.contains("Garhi Khairo", na=False),'Latitude']=28.0572
+df.loc[df['Location'].str.contains("Garhi Khairo", na=False),'Longitude']=67.9792
+
+# For Qila Abdullah
+df.loc[df['Location'].str.contains("Qila Abdullah", na=False),'Latitude']=30.8055
+df.loc[df['Location'].str.contains("Qila Abdullah", na=False),'Longitude']=66.7129
+
+# For Washuk
+df.loc[df['Location'].str.contains("Washuk", na=False),'Latitude']=27.7179
+df.loc[df['Location'].str.contains("Washuk", na=False),'Longitude']=64.8052
+
+# For Sehwan Sharif
+df.loc[df['Location'].str.contains("Sehwan Sharif", na=False),'Latitude']=26.4122
+df.loc[df['Location'].str.contains("Sehwan Sharif", na=False),'Longitude']=67.8629
+
+# For Sarai alamgir
+df.loc[df['Location'].str.contains("Sarai alamgir", na=False),'Latitude']=32.9085
+df.loc[df['Location'].str.contains("Sarai alamgir", na=False),'Longitude']=73.7654
+
+# For Dhabeji
+df.loc[df['Location'].str.contains("Dhabeji", na=False),'Latitude']=24.8032
+df.loc[df['Location'].str.contains("Dhabeji", na=False),'Longitude']=67.5113
+
+# For Bhawalpur
+df.loc[df['Location'].str.contains("Bhawalpur", na=False),'Latitude']=29.3544
+df.loc[df['Location'].str.contains("Bhawalpur", na=False),'Longitude']=71.6911
+
+# For Talagang
+df.loc[df['Location'].str.contains("Talagang", na=False),'Latitude']=32.9172
+df.loc[df['Location'].str.contains("Talagang", na=False),'Longitude']=72.4081
+
+# For Mehrabpur
+df.loc[df['Location'].str.contains("Mehrabpur", na=False),'Latitude']=27.0957
+df.loc[df['Location'].str.contains("Mehrabpur", na=False),'Longitude']=68.4234
+
+# For Shikarpur
+df.loc[df['Location'].str.contains("Shikarpur", na=False),'Latitude']=27.9570
+df.loc[df['Location'].str.contains("Shikarpur", na=False),'Longitude']=68.6380
+
+# For Sambrial
+df.loc[df['Location'].str.contains("Sambrial", na=False),'Latitude']=32.4783
+df.loc[df['Location'].str.contains("Sambrial", na=False),'Longitude']=74.3521
+
+# For Battagram
+df.loc[df['Location'].str.contains("Battagram", na=False),'Latitude']=34.7700
+df.loc[df['Location'].str.contains("Battagram", na=False),'Longitude']=73.1350
+
+# For Shahdadpur
+df.loc[df['Location'].str.contains("Shahdadpur", na=False),'Latitude']=25.9268
+df.loc[df['Location'].str.contains("Shahdadpur", na=False),'Longitude']=68.6261
+
+
+# For Kahuta
+df.loc[df['Location'].str.contains("Kahuta", na=False),'Latitude']=33.5896
+df.loc[df['Location'].str.contains("Kahuta", na=False),'Longitude']=73.3886
+
+# For Panu Akhil
+df.loc[df['Location'].str.contains("Panu Akhil", na=False),'Latitude']=27.8144
+df.loc[df['Location'].str.contains("Panu Akhil", na=False),'Longitude']=69.1089
+
+# For Jam Pur
+df.loc[df['Location'].str.contains("Jam Pur", na=False),'Latitude']=29.6459
+df.loc[df['Location'].str.contains("Jam Pur", na=False),'Longitude']=70.5919
+
+# For Qambar shahdadkot
+df.loc[df['Location'].str.contains("Qambar shahdadkot", na=False),'Latitude']=27.7076
+df.loc[df['Location'].str.contains("Qambar shahdadkot", na=False),'Longitude']=67.5709
+
+# For Awaran
+df.loc[df['Location'].str.contains("Awaran", na=False),'Latitude']=26.4749
+df.loc[df['Location'].str.contains("Awaran", na=False),'Longitude']=65.2679
+
+# For Barkhan
+df.loc[df['Location'].str.contains("Barkhan", na=False),'Latitude']=29.9033
+df.loc[df['Location'].str.contains("Barkhan", na=False),'Longitude']=69.5738
+
+# For Buzdar
+df.loc[df['Location'].str.contains("Buzdar", na=False),'Latitude']=32.555496
+df.loc[df['Location'].str.contains("Buzdar", na=False),'Longitude']=73.194351
+
+# For Hoshab
+df.loc[df['Location'].str.contains("Hoshab", na=False),'Latitude']=26.0155
+df.loc[df['Location'].str.contains("Hoshab", na=False),'Longitude']=63.8818
+
+# For Kalat
+df.loc[df['Location'].str.contains("Kalat", na=False),'Latitude']=28.9184
+df.loc[df['Location'].str.contains("Kalat", na=False),'Longitude']=66.4271
+
+# For Kohan
+df.loc[df['Location'].str.contains("Kohan", na=False),'Latitude']=33.738045
+df.loc[df['Location'].str.contains("Kohan", na=False),'Longitude']=73.084488
+
+# For Mastung
+df.loc[df['Location'].str.contains("Mastung", na=False),'Latitude']=29.8825
+df.loc[df['Location'].str.contains("Mastung", na=False),'Longitude']=66.7844
+
+# For Naseerabad
+df.loc[df['Location'].str.contains("Naseerabad", na=False),'Latitude']=27.3793
+df.loc[df['Location'].str.contains("Naseerabad", na=False),'Longitude']=67.9196
+
+# For Nasirabad
+df.loc[df['Location'].str.contains("Nasirabad", na=False),'Latitude']=27.3793
+df.loc[df['Location'].str.contains("Nasirabad", na=False),'Longitude']=67.9196
+
+# For Qila safed
+df.loc[df['Location'].str.contains("Qila safed", na=False),'Latitude']=29.0333 
+df.loc[df['Location'].str.contains("Qila safed", na=False),'Longitude']=67.9196
+
+# For Qila safed
+df.loc[df['Location'].str.contains("Qila safed", na=False),'Latitude']=27.3793
+df.loc[df['Location'].str.contains("Qila safed", na=False),'Longitude']=61.4833
+
+# For Qila saifullah
+df.loc[df['Location'].str.contains("Qila saifullah", na=False),'Latitude']=30.7033
+df.loc[df['Location'].str.contains("Qila saifullah", na=False),'Longitude']=68.3697
+
+# For Shahpur
+df.loc[df['Location'].str.contains("Shahpur", na=False),'Latitude']=32.2878
+df.loc[df['Location'].str.contains("Shahpur", na=False),'Longitude']=72.4288
+
+
+# For Turbat
+df.loc[df['Location'].str.contains("Turbat", na=False),'Latitude']=26.0081
+df.loc[df['Location'].str.contains("Turbat", na=False),'Longitude']=63.0383
+
+# For Shangla
+df.loc[df['Location'].str.contains("Shangla", na=False),'Latitude']=34.8872
+df.loc[df['Location'].str.contains("Shangla", na=False),'Longitude']=72.7570
+
+# For Cherat
+df.loc[df['Location'].str.contains("Cherat", na=False),'Latitude']=33.8215
+df.loc[df['Location'].str.contains("Cherat", na=False),'Longitude']=71.8883
+
+# For Upper Dir
+df.loc[df['Location'].str.contains("Upper Dir", na=False),'Latitude']=35.3356
+df.loc[df['Location'].str.contains("Upper Dir", na=False),'Longitude']=72.0468
+
+# For Chitral
+df.loc[df['Location'].str.contains("Chitral", na=False),'Latitude']=35.7699
+df.loc[df['Location'].str.contains("Chitral", na=False),'Longitude']=71.7741
+
+# For Chunian
+df.loc[df['Location'].str.contains("Chunian", na=False),'Latitude']=30.9698
+df.loc[df['Location'].str.contains("Chunian", na=False),'Longitude']=73.9712
+
+# For Kamalia
+df.loc[df['Location'].str.contains("Kamalia", na=False),'Latitude']=30.7222
+df.loc[df['Location'].str.contains("Kamalia", na=False),'Longitude']=72.6447
+
+# For Pir Mahal
+df.loc[df['Location'].str.contains("Pir Mahal", na=False),'Latitude']=30.7659
+df.loc[df['Location'].str.contains("Pir Mahal", na=False),'Longitude']=72.4376
+
+# For Lund
+df.loc[df['Location'].str.contains("Lund", na=False),'Latitude']=27.955648
+df.loc[df['Location'].str.contains("Lund", na=False),'Longitude']=68.637672
+
+# For Kohistan
+df.loc[df['Location'].str.contains("Kohistan", na=False),'Latitude']=35.2611
+df.loc[df['Location'].str.contains("Kohistan", na=False),'Longitude']=73.2765
+
+# For Takht-a-Bhai
+df.loc[df['Location'].str.contains("Takht-a-Bhai", na=False),'Latitude']=34.2876
+df.loc[df['Location'].str.contains("Takht-a-Bhai", na=False),'Longitude']=71.9342
+
+# For Kala Shah Kaku
+df.loc[df['Location'].str.contains("Kala Shah Kaku", na=False),'Latitude']=31.7250
+df.loc[df['Location'].str.contains("Kala Shah Kaku", na=False),'Longitude']= 74.2677
+
+# For Bunner
+df.loc[df['Location'].str.contains("Bunner", na=False),'Latitude']=34.3943
+df.loc[df['Location'].str.contains("Bunner", na=False),'Longitude']= 72.6151
+
+# For Chaghi
+df.loc[df['Location'].str.contains("Chaghi", na=False),'Latitude']=28.9804
+df.loc[df['Location'].str.contains("Chaghi", na=False),'Longitude']= 62.4504
+
+# For Shorkot
+df.loc[df['Location'].str.contains("Shorkot", na=False),'Latitude']=30.8335
+df.loc[df['Location'].str.contains("Shorkot", na=False),'Longitude']=72.0883
+
+# For Orakzai
+df.loc[df['Location'].str.contains("Orakzai", na=False),'Latitude']=33.6671
+df.loc[df['Location'].str.contains("Orakzai", na=False),'Longitude']=70.9547
+
+# For Adda Jahan Khan
+df.loc[df['Location'].str.contains("Adda Jahan Khan", na=False),'Latitude']=31.831482
+df.loc[df['Location'].str.contains("Adda Jahan Khan", na=False),'Longitude']=70.911598
+
+# For Tarbela
+df.loc[df['Location'].str.contains("Tarbela", na=False),'Latitude']=34.0875
+df.loc[df['Location'].str.contains("Tarbela", na=False),'Longitude']=72.6990
+
+
+#===================================================================================================================================
+#====================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
